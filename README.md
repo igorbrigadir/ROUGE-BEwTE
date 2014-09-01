@@ -1,3 +1,9 @@
+bewte
+======
+
+This is a mavenized fork of the BEwT-E: Basic Elements with Transformations for Evaluation implementation available from http://www.isi.edu/publications/licensed-sw/BE/ See original page for details & Licence agreement.
+
+
 BE: Basic Elements for Automated Evaluation of Summaries
 ======
 
