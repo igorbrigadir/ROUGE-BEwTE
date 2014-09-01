@@ -1,0 +1,4 @@
+TRUE_NAME:timeperiod	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+after	000024578=2	in the time following (an event or another period of time):
+at	000080510=4	(followed by a noun without a determiner) denoting a particular period of time:
+for	000193700=14	indicating the length of (a period of time):

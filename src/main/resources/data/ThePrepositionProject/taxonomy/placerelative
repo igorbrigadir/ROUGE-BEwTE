@@ -1,0 +1,7 @@
+TRUE_NAME:placerelative	GROUP:spatial	PARENTS:spatial	CHILDREN:	COORDINATES:areabounded,bodypartpermeated,boundarymarker,conveyance,destination,deviceinheraldry,distancelimit,entityenclosing,ground,groundofroute,heightequaled,motiongoal,objectinfront,obstaclepassed,partybordering,partyenclosing,path,periodtraversed,place,placeabandoned,placealignedto,placebeside,placebisected,placecoastal,placedownstream,placefurtheralong,placeofobserver,placeoforigin,placepassed,placepast,placerelative,placesaturated,placesurrounding,placetraversed,residence,roadway,route,surfaceresisting,surfacesupporting,targetofmotion,targetreceptacle,thingabove,thingadjacent,thingblanketing,thingbridged,thingcovered,thingcrowded,thingdescended,thingdescendedfrom,thingencircled,thingenclosing,thingentered,thingfacing,thingfollowed,thinginfront,thingintervening,thingpassed,thingpermeated,thingscaled,thingstraddled,thingsurmounted,thingsurrounded,thingsurveyed,thingtraversed,watercourse
+across	000019873=4	expressing position or orientation:
+aslant	000077907=1	across (something) at an angle.
+of	000340113=11	expressing the relationship between a direction and a point of reference:
+off	000362591=3	situated or leading in a direction away from (a main route or intersection):
+opposite	000407269=2	in a position on the other side of a specific area from; facing:
+to	000492105=3	expressing location, typically in relation to a specified point of reference:

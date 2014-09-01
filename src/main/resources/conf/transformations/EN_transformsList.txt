@@ -1,0 +1,99 @@
+# English Transformations file
+#
+
+@startDefs
+
+pgen	bewte.transforms.PrepGeneralizer	LEFT_OR_RIGHT=left	PREPOSITION_TAXONOMY_DIR=data/ThePrepositionProject/taxonomy
+
+acrl	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=left	ABBREVIATIONS_FILE=/abbreviations/knownAbbreviations.txt
+acrr	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=right	ABBREVIATIONS_FILE=/abbreviations/knownAbbreviations.txt
+
+dlml	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=left	VERB_EXCEPTIONS=data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=data/wordnet3_0/adj.exc
+dlmr	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=right	VERB_EXCEPTIONS=data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=data/wordnet3_0/adj.exc
+
+dnom	bewte.transforms.DenominalizationTransform
+
+dpl		bewte.transforms.DropPeriodsTransform	LEFT_OR_RIGHT=left
+dpr		bewte.transforms.DropPeriodsTransform	LEFT_OR_RIGHT=right
+
+leml	bewte.transforms.LemmaTransform	LEFT_OR_RIGHT=left
+lemr	bewte.transforms.LemmaTransform	LEFT_OR_RIGHT=right
+
+nsl		bewte.transforms.NameShortener	LEFT_OR_RIGHT=left
+nsr		bewte.transforms.NameShortener	LEFT_OR_RIGHT=right
+
+nomt	bewte.transforms.NominalizationTransform
+
+#Verbs
+#gevl	bewte.transforms.GeneralizationTransform	LEFT_OR_RIGHT=left	POS=verb
+#gevr	bewte.transforms.GeneralizationTransform	LEFT_OR_RIGHT=right	POS=verb
+
+#Nouns
+#genl	bewte.transforms.GeneralizationTransform	LEFT_OR_RIGHT=left	POS=noun
+#genr	bewte.transforms.GeneralizationTransform	LEFT_OR_RIGHT=right	POS=noun
+
+#Nouns
+synl	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=left	POS=noun	MIN_SENSE=1	MAX_SENSE=1
+synr	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=right	POS=noun	MIN_SENSE=1	MAX_SENSE=1
+
+#Verbs
+syvl	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=left	POS=verb	MIN_SENSE=1	MAX_SENSE=1
+syvr	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=right	POS=verb	MIN_SENSE=1	MAX_SENSE=1
+
+#Adjectives
+syal	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=left	POS=adj	MIN_SENSE=1	MAX_SENSE=1
+syar	bewte.transforms.SynonymTransform	LEFT_OR_RIGHT=right	POS=adj	MIN_SENSE=1	MAX_SENSE=1
+
+#PronounSwapping
+prol	bewte.transforms.PronounTransform	LEFT_OR_RIGHT=left
+pror	bewte.transforms.PronounTransform	LEFT_OR_RIGHT=right
+
+#Swapping for IS-A/Titles/Appositives/etc
+swap	bewte.transforms.SwapTransform	RULES=10;47;48;49;51
+
+perr	bewte.transforms.PertainymsTransform	LEFT_OR_RIGHT=right
+perl	bewte.transforms.PertainymsTransform	LEFT_OR_RIGHT=left
+
+nppp	bewte.transforms.NPtoPPTransform	RULES=6;7;8;9;26;27;28;29
+role	bewte.transforms.RoleTransform	IS_RULES=8;9;10;47;48;49	DO_RULES=11;12;13;14;15;17;50;51;52
+
+advn	bewte.transforms.AdverbVerbToAdjNounTransform
+adjp	bewte.transforms.AdjpToAdverbVerbTransform
+
+mecl	bewte.transforms.MembersTransform	LEFT_OR_RIGHT=left	CAPITALIZED=true
+mecr	bewte.transforms.MembersTransform	LEFT_OR_RIGHT=right	CAPITALIZED=true
+
+#numl		bewte.transforms.NumberTransform	LEFT_OR_RIGHT=left
+#numr		bewte.transforms.NumberTransform	LEFT_OR_RIGHT=right
+
+@startPipe
+
+#number transformations shouldn't have significant interaction and could come anywhere, early is probably best
+# since only a small portion of BEs will be affected
+#nppp should come before pgen
+# NN1 NN2 <-> NN2 IN NN1
+# NN1 NN2 <-> NN2 VB
+# NN VB -> NN IN NN, VB NN -> NN IN NN
+# NN IN NN -> NN VB, NN IN NN -> VB NN
+
+
+swap
+#Removal of periods should occur before synonymization, generalization, etc.
+dpl
+dpr
+nppp	role
+nomt	dnom
+advn	adjp
+prol
+pror
+nsl
+nsr
+acrl
+acrr
+leml	syal	synl	syvl	perl	mecl
+lemr	syar	synr	syvr	perr	mecr
+#pgen should all the transforms that produce BEs with prepositions
+pgen
+#Most logical to have 'delemmatization' at the end
+dlml
+dlmr		

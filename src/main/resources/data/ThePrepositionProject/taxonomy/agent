@@ -1,0 +1,6 @@
+TRUE_NAME:agent	GROUP:agent	PARENTS:	CHILDREN:agent,authority,creator,grantor,holder,party,partynamed,partyoutofcharacter,personinfront,thingembodying	COORDINATES:activity,agent,backdrop,barrier,cause,consequence,doubles,exception,meansmedium,membership,party,possession,quantity,scalar,spatial,substance,tandem,target,temporal,topic,tributary,void
+by	000146122=2,3,4,5	identifying the agent performing an action:
+by the hand of	000164941=1	through the agency of:
+by the hands of	000165695=1	through the agency of:
+from	000212636=15	by or on the part of (someone or something)
+on the part of	000397091=1	used to ascribe responsibility for something to someone:

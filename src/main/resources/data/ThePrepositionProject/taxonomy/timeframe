@@ -1,0 +1,4 @@
+TRUE_NAME:timeframe	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+during	000185099=1	throughout the course or duration of (a period of time):
+in	000231831=5	expressing a period of time during which an event happens or a situation remains the case:
+in the course of	000283452=1	undergoing the specified process:

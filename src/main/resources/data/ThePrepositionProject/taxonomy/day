@@ -1,0 +1,2 @@
+TRUE_NAME:day	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+on	000369343=20	indicating the day or part of a day during which an event takes place:

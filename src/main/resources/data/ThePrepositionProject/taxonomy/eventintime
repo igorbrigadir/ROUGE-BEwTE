@@ -1,0 +1,5 @@
+TRUE_NAME:eventintime	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+during	000185099=2	at a particular point in the course of:
+in the course of	000283452=2	during the specified period or activity:
+mid	000323368=2	in the course of.
+past	000438297=4	beyond in time; later than:

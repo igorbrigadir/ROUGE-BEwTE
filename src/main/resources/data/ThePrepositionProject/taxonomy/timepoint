@@ -1,0 +1,12 @@
+TRUE_NAME:timepoint	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+at	000080510=3	expressing the time when an event takes place:
+before	000102986=2	during the period of time preceding (a particular event or time):
+come	000171553=1	when a specified time is reached or event happens:
+in advance of	000254809=1	ahead of; before:
+near	000328511=3	a short period of time from:
+on the stroke of	000400298=1	precisely at the specified time:
+previous to	000446054=1	before:
+prior to	000446630=1	before:
+until	000538337=1	up to (the point in time or the event mentioned):
+unto	000539885=4	TimePoint
+up to	000549318=2	until:

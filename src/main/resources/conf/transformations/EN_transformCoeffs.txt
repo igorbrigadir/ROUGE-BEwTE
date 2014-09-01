@@ -1,0 +1,73 @@
+@startDefs
+
+pgen	pgen
+
+acrl	acro
+acrr	acro
+
+dlml	lemm
+dlmr	lemm
+
+dnom	dnom
+
+dpl		drop
+dpr		drop
+
+leml	lemm
+lemr	lemm
+
+nsl		name
+nsr		name
+
+nomt	nomt
+
+#Verbs
+#gevl	gene
+#gevr	gene
+syvl	syno
+syvr	syno
+
+#Nouns
+#genl	gene
+#genr	gene
+synl	syno
+synr	syno
+
+#Adjectives
+syal	syno
+syar	syno
+
+swap	swap
+prol	pron
+pror	pron
+
+perl	pert
+perr	pert
+nppp	nppp
+role	role
+
+advn	advn
+adjp	adjp
+
+mecl	memc
+mecr	memc
+
+@startCoeffs
+
+advn=1.0
+adjp=1.0
+pgen=1.0
+acro=1.0
+dnom=1.0
+drop=1.0
+lemm=1.0
+name=1.0
+nomt=1.0
+#gene=0.0
+syno=1.0
+swap=1.0
+pron=1.0
+pert=1.0
+nppp=1.0
+role=1.0
+memc=1.0

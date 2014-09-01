@@ -1,0 +1,3 @@
+TRUE_NAME:subtrahend	GROUP:quantity	PARENTS:quantity	CHILDREN:	COORDINATES:age,amount,amountadded,amountofvariance,approximation,debitentry,distance,dividend,exponent,levelapproached,magnitude,modulus,multiplier,originofmeasure,price,quantity,ratiodenominator,standardmissed,subtrahend,sum,sumbasis,targetmissed,thingadditional,unitreference,unitsize
+less	000316732=1	before subtracting (something); minus:
+minus	000325155=2	with the subtraction of:

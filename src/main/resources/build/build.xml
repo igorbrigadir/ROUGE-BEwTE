@@ -1,0 +1,258 @@
+<project name="BEwT-E" basedir="..">
+
+	<target name="init">
+		<tstamp />
+		
+		
+		<!-- Location of WordNet -->
+		<property name="WORDNET_DIR" value="data/wordnet3_0"/>
+		<!-- Location of LingPipe NER model file (if used) -->
+		<property name="LINGPIPE_NER_MODEL" value="/blah/blah/models/ne-en-news-muc6.AbstractCharLmRescoringChunker"/>
+		<!-- Directory containing the OpenNLP NER model files (if used) -->
+		<property name="OPENNLP_NER_MODELS_DIR" value=""/>
+		<!-- END RESOURCE DIRECTORIES -->
+		
+		<!-- ***YOUR FILES - THESE MUST BE SET PROPERLY BEFORE USE ***-->
+		<!-- Location of input files -->
+		<property name="SUMMARIES_DIR" value="path/to/summaries"/>
+		<!-- Directory to use for intermediate files -->
+		<property name="INTERMEDIATE_FILES_DIR" value="base/path/for/intermediate/files"/>
+		<!-- Output file for system level output -->
+		<property name="SYSTEM_LEVEL_OUTPUT_FILE" value="systemLevelOutput.txt"/>
+		<!-- Output file for summary level output -->
+		<property name="SUMMARY_LEVEL_OUTPUT_FILE" value="summaryLevelOutput.txt"/>
+		<!-- Regex describing files to be included -->
+		<property name="FILES_TO_INCLUDE" value=".*"/>
+		
+		
+		<!-- OPTIONS -->
+			<!-- Tally Function - Determines weight assigned to BEs based upon frequency
+				 in reference documents. Options include binary, root, and total, which require
+				 bewte.scoring.TallyFunction$BinaryTallyFunction, bewte.scoring.TallyFunction$RootTallyFunction, 
+				 bewte.scoring.TallyFunction$TotalTallyFunction, respectively. -->
+			<property name="TALLY_FUNCTION" value="bewte.scoring.TallyFunction$BinaryTallyFunction"/>
+		
+			<!-- Determine if identical("duplicate") BEs are ignored or included, default="false" -->
+			<property name="DUPLICATES" value="false"/>
+			
+			<!-- Determine how to get the topic and system names from a filename -->
+			<property name="NAME_EXTRACTOR" value="bewte.names.DUCStyleNameExtractor"/>
+		
+			<!-- Determine whether a system is a reference system or a hypothesis system -->
+			<property name="REFERENCE_NAME_PATTERN" value="[A-Z_\\-]+"/>
+	
+			<!-- Determines which class is used to read in the summaries. Default: bewte.io.StandardTextDocReader, which reads in plain text -->	
+			<property name="DOCUMENT_READER_CLASS" value="bewte.io.StandardTextDocReader"/>
+		
+			<!-- BE extraction rules and Transformations -->
+			<!-- Location of rules list to use -->
+			<property name="ENGLISH_RULE_LIST" value="conf/rules/EN_ruleList.txt"/>
+			<!-- Location of transformations list to use -->
+			<property name="ENGLISH_TRANSFORM_LIST" value="conf/transformations/EN_transformsList.txt"/>
+			<!-- Location of coefficients list to use -->
+			<property name="ENGLISH_TRANSFORM_COEFFS" value="conf/transformations/EN_transformCoeffs.txt"/>
+		
+		    <!-- Configuration of end-of-evaluation analysis, potentially useful for optimization -->
+			<property name="END_ANALYSIS_CONF_FILE" value="conf/endanalysis/doNothingEndAnalysisConfig.txt"/>
+
+		<!-- END OPTIONS -->
+		
+		<property name="PIPELINE_RUNNER_CLASS" value="tratz.runpipe.util.RunPipe" />
+		<property name="CORPUS_READER" value="-corpusreader" />
+		<property name="DOCUMENT_READER" value="-documentreader" />
+		<property name="ANNOTATOR" value="-annotator" />
+		<property name="END_PROCESSING_UNIT" value="-endpoint" />
+		
+		<property name="CLASSES" location="build/classes" />
+		<property name="LIB" location="lib"/>
+		<property name="SRC" location="src"/>
+		<property name="RESOURCES" location="resource" />
+		<property name="MODELS_DIR" location="models"/>
+		
+		<path id="project.classpath">
+			<pathelement path="${CLASSES}" />
+			<fileset dir="${LIB}">
+				<include name="**/*.jar" />
+			</fileset>
+		</path>
+		
+	</target>
+
+	<target name="jar" depends="init">
+		<delete dir="${CLASSES}"/>
+		<mkdir dir="${CLASSES}" />
+		<javac srcdir="${SRC}" destdir="${CLASSES}" debug="on" target="1.5">
+			<classpath>
+				<fileset dir="${LIB}">
+					<include name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+		<copy todir="${CLASSES}">
+			<fileset dir="${SRC}">
+				<include name="**/*" />
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+		<copy todir="${CLASSES}">
+			<fileset dir="${RESOURCES}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<jar destfile="BEwT-E.jar" basedir="${CLASSES}"></jar>
+	</target>
+	
+	<!-- Step 1. Parse input documents -->
+	<target name="Step1" depends="init">
+		<antcall target="Parse_Documents">
+			<param name="indir" value="${SUMMARIES_DIR}"/>
+			<param name="outdir" value="${INTERMEDIATE_FILES_DIR}/parsed"/>
+		</antcall>
+	</target>
+	<target name="Parse_Documents" depends="init">
+		<java classname="${PIPELINE_RUNNER_CLASS}" fork="true">
+			<classpath refid="project.classpath" />
+			<jvmarg value="-Xms128m" />
+			<jvmarg value="-Xmx4000m" />
+			
+			<!-- Corpus Reader -->
+			<arg value="${CORPUS_READER}" />
+			<arg value="tratz.runpipe.impl.corpusreader.DirectoryCorpusReader" />
+			<arg value="InputDirectories=${indir}"/>
+				
+			<!-- Document Reader -->
+			<arg value="${DOCUMENT_READER}" />
+			<arg value="${DOCUMENT_READER_CLASS}" />
+				
+			<!-- Annotators -->
+			<arg value="${ANNOTATOR}" />
+			<arg value="tratz.runpipe.impl.annotators.sentence.BreakIteratorSentenceAnnotator"/>
+			<arg value="ONLY_WHEN_NECESSARY=true"/>
+			
+			<arg value="${ANNOTATOR}" />
+			<arg value="bewte.annotators.RegexTokenizer"/>
+							
+			<arg value="${ANNOTATOR}"/>
+			<arg value="tratz.runpipe.impl.annotators.pos.TratzPosTaggerAnnotator"/>
+			<arg value="ModelFile=${MODELS_DIR}/posTaggingModel.gz"/>
+			<arg value="WordNetDir=${WORDNET_DIR}"/>
+			
+			<arg value="${ANNOTATOR}" />
+			<arg value="tratz.runpipe.impl.annotators.parse.TratzParserAnnotator" />
+			<arg value="ModelFile=${MODELS_DIR}/parseModel.gz"/>
+			<arg value="WordNetDir=${WORDNET_DIR}"/>
+			<arg value="VchTransform=true"/>
+				
+			<!-- End Points -->
+			<arg value="${END_PROCESSING_UNIT}" />
+			<arg value="tratz.runpipe.impl.endpoints.GzippedDocumentWriter" />
+			<arg value="OutputDir=${outdir}" />
+		</java>
+	</target>
+	
+	<!-- Step 2. Extract BEs-->
+	<target name="Step2" depends="init">
+		<antcall target="Extract_BEs">
+			<param name="indir" value="${INTERMEDIATE_FILES_DIR}/parsed"/>
+			<param name="outdir" value="${INTERMEDIATE_FILES_DIR}/BEs"/>
+		</antcall>
+	</target>
+	<target name="Extract_BEs" depends="init">
+		<java classname="${PIPELINE_RUNNER_CLASS}" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx2000m"/>
+			
+			<!-- Corpus Reader -->
+			<arg value="${CORPUS_READER}" />
+			<arg value="tratz.runpipe.impl.corpusreader.GzippedCorpusReader" />
+			<arg value="InputDirectories=${indir}" />
+			
+			<arg value="${ANNOTATOR}"/>
+			<arg value="tratz.runpipe.impl.annotators.parse.TokenFieldUpdater"/>
+			<arg value="WordNetDir=${WORDNET_DIR}" />
+			
+
+			<!-- uncomment to use OpenNLP NER -->
+			<!--
+				<arg value="${ANNOTATOR}"/>
+				<arg value="runpipewrappers.ner.OpenNlpNerWrapper" />
+				<arg value="ModelPath=${OPENNLP_NER_MODELS_DIR}/person.bin.gz"/>
+				<arg value="AnnotationClass=runpipe.annotations.PersonAnnotation"/>
+				<arg value="${ANNOTATOR}"/>
+				<arg value="runpipewrappers.ner.OpenNlpNerWrapper" />
+				<arg value="ModelPath=${OPENNLP_NER_MODELS_DIR}/organization.bin.gz"/>
+				<arg value="AnnotationClass=runpipe.annotations.OrganizationAnnotation"/>					
+				<arg value="${ANNOTATOR}"/>
+				<arg value="runpipewrappers.ner.OpenNlpNerWrapper" />
+				<arg value="ModelPath=${OPENNLP_NER_MODELS_DIR}/location.bin.gz"/>	
+				<arg value="AnnotationClass=runpipe.annotations.LocationAnnotation"/>
+			-->
+			
+			<!-- uncomment to use LingPipe NER -->
+			<!--
+				<arg value="${ANNOTATOR}"/>
+				<arg value="runpipewrappers.ner.LingPipeNerWrapper"/>
+				<arg value="ModelLocation=${LINGPIPE_NER_MODEL}"/>
+			-->
+
+			
+			<arg value="${END_PROCESSING_UNIT}" />
+			<arg value="bewte.beextraction.BasicElementExtractor" />
+			<arg value="OutputDir=${outdir}"/>
+		</java>
+	</target>
+	
+	<!-- Step 3. Perform Transformations -->
+	<target name="Step3" depends="init">
+		<antcall target="Transform_BEs">
+			<param name="indir" value="${INTERMEDIATE_FILES_DIR}/BEs"/>
+			<param name="outdir" value="${INTERMEDIATE_FILES_DIR}/BEXs"/>
+		</antcall>
+	</target>
+	<target name="Transform_BEs" depends="init">
+		<java classname="bewte.BEXpander" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xmx2000m"/>
+			<!-- Input directory containing files with BEs -->
+			<arg value="${indir}"/>
+			<!-- Output directory containing files with transformed BEs -->
+			<arg value="${outdir}"/>
+			<arg value="${WORDNET_DIR}"/>
+			<!-- First topic to perform transformations on (default=0) -->
+			<arg value="0"/>
+			<!-- Last topic to perform transformations on (default=-1) -1 implies the last topic -->
+			<arg value="-1"/>
+			<!-- Regular expression that matches only 'reference' file names -->
+			<arg value=".*${REFERENCE_NAME_PATTERN}"/>
+			<arg value="${ENGLISH_TRANSFORM_LIST}"/>
+			<arg value="${NAME_EXTRACTOR}"/>
+		</java>
+	</target>
+	
+	<!-- Step 4. Perform Evaluation -->
+	<target name="Step4" depends="init">
+		<antcall target="Evaluate"/>
+	</target>
+	<target name="Evaluate" depends="init">
+		<java classname="bewte.BEwT_E" fork="true">
+			<classpath refid="project.classpath"/>
+			<jvmarg value="-Xms512m"/>
+			<jvmarg value="-Xmx3500m"/>
+			<!-- Location of BE files -->
+			<arg value="${INTERMEDIATE_FILES_DIR}/BEXs"/>
+			<arg value="${SYSTEM_LEVEL_OUTPUT_FILE}"/>
+			<arg value="${SUMMARY_LEVEL_OUTPUT_FILE}"/>
+			<arg value="${TALLY_FUNCTION}"/>
+			<arg value="${DUPLICATES}"/>
+			<arg value="${ENGLISH_RULE_LIST}"/>
+			<arg value="${ENGLISH_TRANSFORM_LIST}"/>
+			<arg value="${ENGLISH_TRANSFORM_COEFFS}"/>
+			<arg value="${REFERENCE_NAME_PATTERN}"/>
+			<arg value="${END_ANALYSIS_CONF_FILE}"/>
+			<arg value="${NAME_EXTRACTOR}"/>
+			<arg value="${FILES_TO_INCLUDE}"/>
+		</java>
+	</target>
+	
+	
+</project>

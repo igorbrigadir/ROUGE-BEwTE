@@ -1,0 +1,3 @@
+TRUE_NAME:periodsurveyed	GROUP:temporal	PARENTS:temporal	CHILDREN:	COORDINATES:dateofcreation,dateofrecord,day,eventafter,eventinfuture,eventintime,eventprecedindg,hour,occasion,partyanticipating,periodenduring,periodlimit,periodlimiting,periodofactivity,periodrepeated,periodsurveyed,timeapproached,timebisected,timeboundary,timeframe,timelater,timeorigin,timeperiod,timepoint,timetargeted
+down	000179291=6	throughout (a period of time):
+throughout	000487560=2	from beginning to end of (an event or period of time):

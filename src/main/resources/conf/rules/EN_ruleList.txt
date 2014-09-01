@@ -1,0 +1,92 @@
+#Unigram BEs
+1	r1	Nouns	@NN|NNS|NNP|NNPS=x	x
+2	r2	Verbs	VBZ|VB|VBD|VBP|VBN|VBG=x !$+ PRT	x
+2	r3	V-PRT	VP [<# !AUX|AUXG=x < PRT=y]	xy
+3	r4	Adjs	JJ|JJR|JJS=x	x
+
+#Multigram BEs
+
+#ADJ/CD/PRP - Noun rules
+4	r5	Adj-Noun	@NP [[<# !POS=y | <# (POS $- __=y)]& <+(ADJP|QP) JJ|JJR|JJS|CD|VBG|VBN=x]	xy
+
+#Possessive handling
+5	r6	PRP-Noun	@NP [[<# !POS=y | <# (POS $- __=y)]& <+(ADJP|QP) /PRP\$/=x]	xy
+5	r7	PossessorOf-Head	NP [< (NP <# (POS $- __=x)) & <# __=y]	xy
+
+#Prenominal nouns
+#.+(NN|NNS|NNP|NNPS) causes array index out of bounds exception
+6	r8	N-HeadNoun	NP [< ((__ ># NP) [$- NN|NNS|NNP|NNPS=x | $- (NN|NNS|NNP|NNPS $- NN|NNS|NNP|NNPS=x) | $- (NN|NNS|NNP|NNPS $- (NN|NNS|NNP|NNPS $- NN|NNS|NNP|NNPS=x)) | $- (NN|NNS|NNP|NNPS $- (NN|NNS|NNP|NNPS $- (NN|NNS|NNP|NNPS $- NN|NNS|NNP|NNPS=x)))]) & <# !POS=y]	xy
+#6	r8	N-HeadNoun	NN|NNS|NNP|NNPS=y $- NN|NNS|NNP|NNPS=x	xy
+6	r9	N-Noun	NP < (NN|NNS|NNP|NNPS=y [!># NP & [$+ CC | $+ /,/] & [$- NN|NNS|NNP|NNPS=x]])	xy
+
+#Appositive
+7	r10	N-ApposN	@NP=x <, (@NP $+ (/,/ $+ ((@NP <# __=y) ?$+ /,/)))	xy
+
+#Subject
+8	r11	HeadNoun-V	NP|S [<+(NP) (@NP <# !POS|RB|RBR|RBS=x) & [<+(VP) (@VP <# VB|VBZ|VBD|VBG|VBP=y) | <+(VP) (VP <# AUX=y !< VP)]]	xy
+8	r12	HeadNoun-V	NP|S [<+(NP) (@NP <# !POS=x) & [<+(VP) (@VP [<# AUX=z & < (VP <# VBN=y)])]]	xy	z~has|had|have
+# not perfect, but seems more accurate than not
+8	r13	V-By-Agent	VP [<# VBN=x & < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z)])]	zx	y~by
+
+#headnoun-headverb using who/that/which
+# added NN/NNS because sometime the VP head is misPOStagged
+9	r14	HeadNoun-(who/that)-V	@NP [< (@NP <# !POS|JJ=x) & < (@SBAR < (@S [!< NP & [<+(VP) (@VP <# VB|VBZ|VBD|VBG|VBP|NN|NNS=y) | <+(VP) (VP <# AUX=y !< VP)]]))]	xy
+9	r15	HeadNoun-(who/that)-V	@NP [< (@NP <# !POS|JJ=x) & < (@SBAR < (@S [!< NP & <+(VP) (@VP [<# AUX=z & < (VP <# VBN=y)])]))]	xy	z~has|have|had
+9	r16	HeadNoun-(who/that VP CC)-V	@NP [< (@NP <# !POS|JJ=x) & < (@SBAR < (@S [!< NP & < (@VP < (CC $+ (VB|VBZ|VBD|VBN|VBG|VBP|AUX=y)))]))]	xy
+9	r17	HeadNoun-(who/that)-V	@NP [< (@NP <# !POS|JJ=x) & < (@SBAR < (@S [!< NP & [<+(VP) (@VP <+(VP) (@VP [<# VBN=y & !>+(VP) (VP <# AUX)]))]]))]	xy
+9	r18	V-(who/that)-HeadNoun	@NP [< (@NP <# !POS|JJ=x) & < (@SBAR < (@S [!< NP & <+(VP) (@VP [<# AUX=z & < (VP <# VBN=y)])]))]	yx	z~is|be|was|were|been|are
+# ... the judgment he owes in the... -> he|owes|judgment
+9	r19	NP(NP(z) SBAR(S(NP(x)VP(y))))	NP [!< /,/ & < (NP <# NN|NNS|NNP|NNPS=z) & < (@SBAR <: (S [< (NP <# __=x) & <+(VP) (VP <# VB|VBP|VBN|VBD|VBG|VBZ=y !< NP !< VP)]))]	yz	z!time|times
+9	r20	NP(NP(z) SBAR(S(NP(x)VP(y))))	S [< NP=x & !< NP]	x
+
+#verb-obj
+10	r21	V-HeadNoun	VP [<# __=x & < (NP <# !POS=y)]	xy
+10	r22	V-HeadNoun	VP [<# !MD=x & < (S < (NP <# !POS=y))]	xy
+#verb-obj, passive
+10	r23	V-HeadNoun(passive)	NP|S [<+(NP) (@NP <# !POS=x) & [<+(VP) (VP [<# VBN=y & >+(VP) (VP < AUX=z)])]]	yx	z!has|have|had
+#partmod-VBN
+10	r24	V-HeadNoun(passive)	NP|S [<+(NP) (@NP <# !POS=x) & [<+(VP) (VP <# VBN=y) & !<+(VP) (VP <# AUX)]]	yx
+
+#John is strong
+11	r25	V-ADJ	VP [<# __=x & < (ADJP <# __=y)]	xy	x~is|be|are|was|were|being|been
+
+#PPs
+12	r26	PPinNP	NP [<# !POS|RB|RBR|RBS=x < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z)])]	xyz
+12	r27	PPComboInNP	NP [<# !POS=x & < (PP [<# (IN|TO=y $+ (PP [<# IN|TO=a & <+(NP) (NP <# !POS=z)]))])]	xyz
+12	r28	PPinNP4Which	NP [<# !POS=x & < (SBAR [< (WHPP [< IN=y & < (WHNP < WDT|WP)]) & < (S < (NP <# !DT|POS=z) <+(VP) (VP [!< VP & < ADJP]))]) ]	zyx
+12	r29	PPinNP4Which2	NP [<# !POS=x & < (SBAR [< (WHPP [< IN=y & < (WHNP < WDT|WP)]) & < (S < NP <+(VP) (VP [<# AUX & !< VP & < (NP <# __=z)]))]) ]	zyx
+
+13	r30	PPinVP	VP [<# VB|VBZ|VBD|VBG|VBP|AUX=x & < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z)])]	xyz
+13	r31	PPinVP	VP [<# VBN|VB|VBZ|VBD|VBG|VBP|AUX=x & < (PP [< (PP [< IN|TO=y & <+(NP) (NP <# !POS=z)]) & !< !PP])]	xyz
+13	r32	PPinVP	VP [<# VBN=x & < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z)])]	xyz	y!by
+13	r33	PPinVP	VP [<# VBN|VB|VBZ|VBD|VBG|VBP|AUX=x & < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z) & < (PP [<# IN|TO=a & <+(NP) (NP <# !POS=b)])])]	xab
+13	r34	PPComboInVP	VP [<# VBN|VB|VBZ|VBD|VBG|VBP|AUX=x & < (PP [<# (IN|TO=y $+ (PP [<# IN|TO=a & <+(NP) (NP <# !POS=z)]))])]	xyz
+13	r35	PPinVP4Which	NP [<# !POS=x & < (SBAR [< (WHPP [< IN=y & < (WHNP < WDT|WP)]) & < (S <+(VP) (VP [<# !AUX|MD|AUXG=z & !< VP & !< ADJP]))]) ]	zyx	z!do|did|done
+13	r36	PPinS	S [<# __=x & < (PP [< IN|TO=y & <+(NP) (NP <# !POS=z)])]	xyz
+
+14	r37	PPinADJP	ADJP [<# __=x & < (PP [<# IN|TO=y & <+(NP) (NP <# !POS=z)])]	xyz
+14	r38	PPinADJP	ADJP [<# __=x & < (PP [<# IN|TO=y & < (S <+(VP) (VP <# __=z !< VP))])]	xyz
+14	r39	PPinADJP4Which	NP [<# !POS=x & < (SBAR [< (WHPP [< IN=y & < (WHNP < WDT|WP)]) & < (S <+(VP) (VP [!< VP & < (ADJP <# __=z)]))]) ]	zyx
+
+13	r40	(SBAR+WHADVP)inVP	VP [<+(VP) (VP <# __=x !< VP) & < (SBAR [< (WHADVP <# __=y) & < (S <+(VP) (VP <# __=z !< VP))])]	xyz
+12	r41	(SBAR+WHADVP)inNP	NP [<# __=x & < (SBAR [< (WHADVP <# __=y) & < (S <+(VP) (VP <# __=z !< VP))])]	xyz
+13	r42	(SBAR+WHADVP)inS	S [<+(VP) (VP <# __=x & !< VP) & < (SBAR [< (WHADVP <# __=y) & < (S <+(VP) (VP <# __=z !< VP))])]	xyz
+
+#PROBABLY LESS USEFUL RULES
+15	r43	V-IN-V	VP [<# __=x & < (SBAR [<# IN=y & < (S [<+(VP) (VP <# VB|VBZ|VBD|VBN|VBG|VBP=z) | <+(VP) (VP <# AUX=z !< VP)])])]	xyz
+15	r44	V-V	@VP [<# VBZ|VB|VBD|VBP|VBN|VBG=x & < (@S [!< NP & < (@VP < (@VP <# VBZ|VB|VBD|VBP|VBN|VBG=y))])]	xy
+15	r45	V-MOD	VP [<# __=x & < (NP $+ (/,/ $+ (S [!< NP & <# __=y])))]	xy
+#V-ADV - no idea why I need to OR these to get this to work
+15	r46	V-ADV	VP|S [[<# VBZ|VB|VBD|VBP|VBN|VBG|AUX=x & <+(ADVP) RB=y] | [< (ADVP < RB=y) & < (VP <# VBZ|VB|VBD|VBP|VBN|VBG|AUX=x)]]	xy
+# John is the president
+16	r47	IS-RULE	S|NP [<+(NP) (NP <# !POS|JJ|JJS|JJR|EX|DT|PRP|VBG=x) & <+(VP) (VP [<# AUX=y & < (NP <# !POS|JJ|JJR|JJS=z)])]	zx	y~is|was|were|be|are|been
+# the book titled "The Title of the Book"
+16	r48	TitleRule	NP  <+(NP) (NP [<# !POS=x & $+ (VP [<# VBN=y & [< (NP <# !POS=z) | < (S <# !POS=z)]])])	zx	y~entitled|titled|named|called|labeled|designated|baptized|baptised|christend|termed|styled|dubbed|nicknamed|tagged
+# the book "The Title of the Book"
+16	r49	TitleRule4	NP [< (!POS|CC|DT=x $+ ``) & < (NX <- !TO|IN=y)]	yx
+15	r50	SubVerbClause	NP|S [<+(NP) (@NP <# !POS=x) & [< (S !< NP & <+(VP) (@VP <# !VBN=y !< VP))]]	xy
+#Ought to have a transform to reverse xz?
+15	r51	BE-ADJP-IN-VBG	NP|S [<+(NP) (NP <# !POS|EX=x) & <+(VP) (VP [<# __=y & < (ADJP < (PP < (S <+(VP) (VP <# __=z))))])]	xz	y~is|was|were|are|be|been|being
+15	r52	BE-USED4-VBG	NP|S [<+(NP) (NP <# !POS|EX=x) & <+(VP) (VP [< VBN=y & < (PP <# IN=z [< (S <+(VP) (VP <# VBG=a !< VP)) | < (NP < __=a)])])]	xa	y~used	z~for	a~.*ing
+
+

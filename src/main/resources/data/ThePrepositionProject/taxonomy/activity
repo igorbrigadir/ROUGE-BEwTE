@@ -1,0 +1,9 @@
+TRUE_NAME:activity	GROUP:activity	PARENTS:	CHILDREN:activity,activityabandoned,activityanticipated,activitydecoy,activityreferenced,challenge,enthusiasm,journey,occupationabandoned,thingorchestrated,thingprevented	COORDINATES:activity,agent,backdrop,barrier,cause,consequence,doubles,exception,meansmedium,membership,party,possession,quantity,scalar,spatial,substance,tandem,target,temporal,topic,tributary,void
+amid	000052056=2	in an atmosphere or against a background of:
+at	000080510=5	(followed by a noun without a determiner) denoting the time spent by someone attending an educational institution or workplace:
+in the midst of	000289150=1	the middle part or point:
+in the throes of	000295138=1	in the middle of doing or dealing with something very difficult or painful:
+on	000369343=22	engaged in:
+outside	000415306=5	beyond the limits or scope of:
+under	000515124=15	undergoing (a process):
+up to	000549318=7	occupied or busy with:

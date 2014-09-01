@@ -1,0 +1,3 @@
+TRUE_NAME:modulus	GROUP:quantity	PARENTS:quantity	CHILDREN:	COORDINATES:age,amount,amountadded,amountofvariance,approximation,debitentry,distance,dividend,exponent,levelapproached,magnitude,modulus,multiplier,originofmeasure,price,quantity,ratiodenominator,standardmissed,subtrahend,sum,sumbasis,targetmissed,thingadditional,unitreference,unitsize
+mod	000326663=1	Modulus
+modulo	000327211=1	(in number theory) with respect to or using a modulus of a specified number. Two numbers are congruent modulo a given number if they give the same remainder when divided by that number.
