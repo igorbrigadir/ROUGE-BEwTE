@@ -1,201 +1,99 @@
-Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
+LICENSE AGREEMENT
 
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+This License Agreement (the "Agreement") is entered, effective this date, by and between University of Southern California, and the individual executing this Agreement below as "Licensee" (hereinafter, the "Licensee").
 
-   1. Definitions.
+ 
 
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
+WHEREAS, USC has developed the BE Package and related documentation (the "Software"); and
 
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
+ 
 
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
+WHEREAS, Licensee desires, and USC is willing to grant to Licensee, a license to use the Software in accordance with this Agreement;
 
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
+ 
 
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
+NOW, in consideration of the foregoing, the mutual covenants hereinafter set forth, and for other good and valuable consideration, the receipt and sufficiency of which is hereby acknowledged, the parties agree as follows:
 
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
+ 
 
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
+1. USC hereby grants Licensee a royalty-free, non-exclusive, non-transferable right to use the Software as follows solely for a Non-Commercial Purpose:
 
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
+ 
 
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
+(a) Licensee may prepare derivative works (the "Derivative Works") which are based on or incorporate all or part of the Software, including, without limitation, works (the "Adaptations") which
 
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
+ 
 
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
+(i) are translations of all or part of the Software into different programming languages, or
 
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
+ 
 
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
+(ii) are revisions, improvements or corrections to all or part of the Software, provided that, Licensee shall treat all Derivative Works as Software under this Agreement; and
 
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
+ 
 
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
+(b) Licensee may make only such copies of the Software as are necessary for Licensee's development of the Derivative Works.
 
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
+ 
 
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
+2. All copies of the Software and Derivative Works prepared in accordance with paragraph 1 shall retain the copyright notice appearing in the Software. If the Software includes computer programs in object code form, Licensee shall not de-compile, reverse engineer or disassemble such programs.
 
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
+ 
 
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
+3. As used in this Agreement, "Non-Commercial Purpose" means use of the Software and Derivative Works solely for education or research. "Non-Commercial Purpose" excludes, without limitation, any use of the Software or Derivative Works for, as part of, or in any way in connection with a product (including software) or service which is sold, offered for sale, licensed, leased, loaned or rented.
 
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
+ 
 
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
+4. Licensee hereby grants USC a non-exclusive, royalty-free, fully paid-up, worldwide, perpetual license to:
 
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
+ 
 
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
+(a) Reproduce, prepare derivative works based on and distribute all or part of the Adaptations; and
 
-   END OF TERMS AND CONDITIONS
+ 
 
-   APPENDIX: How to apply the Apache License to your work.
+ 
 
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "{}"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
+ 
 
-   Copyright {yyyy} {name of copyright owner}
+(b) Make, have made, use, offer to sell, sell, license or import any products (including software) or services under any intellectual property rights owned or licensed by Licensee which relate to
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+ 
 
-       http://www.apache.org/licenses/LICENSE-2.0
+(i) all or part of the Adaptations (including as executed by a CPU), or
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
+ 
+
+(ii) methods or concepts embodied in, or implemented through the execution by a CPU of, the Adaptations. If the Software includes documentation that identifies a contact person at USC, Licensee shall provide such person with feedback concerning Licensee's Adaptations and, if requested by USC, provide such person with source code copies of Licensee's Adaptations.
+
+ 
+
+5. This Agreement is personal between USC and Licensee. No ownership interest in the Software (or the copy of which is provided by USC pursuant to paragraph 1) is transferred to Licensee. Licensee's interest in the Derivative Works is limited solely to Licensee's additions and the Derivative Works are subject in their entirety to USC's intellectual property rights. USC may assign or transfer to any company or person, or grant to any company or person a license or sublicense under, all or part of its interest in any rights to the Software, this Agreement, or any license granted to USC hereunder. Licensee may not assign, transfer or sublicense Licensee's rights hereunder without the written consent of USC.
+
+6. USC may terminate this Agreement at any time by sending written notice of termination to Licensee at the address specified below. Termination shall be effective as provided in the notice. Unless the notice shall provide otherwise, upon termination, Licensee shall destroy all copies of the Software and Derivative Works. Licensee's obligations under this Agreement, including any rights granted to USC pursuant to paragraph 5, shall survive and continue after termination.
+
+7. Licensee shall not, directly or indirectly, export the Software or any Derivative Work to any country to which such export is prohibited by law.
+
+8. Licensee agrees to comply with all export laws and restrictions and regulations of the United States or foreign agencies or authorities, and not to export or re-export the Software or any direct product thereof in violation of any such restrictions, laws or regulations, or without all necessary approvals. Neither the Software nor the underlying information or technology may be downloaded or otherwise exported or re-exported
+
+(i) into Cuba, Iran, Iraq, Libya, North Korea, Sudan, Syria, Serbia, Taliban-controlled portions of Afghanistan or any other country subject to U.S. trade sanctions covering the Software, to individuals or entities controlled by such countries, or to nationals or residents of such countries other than nationals who are citizens or lawfully admitted permanent residents of the United States and not currently domiciled in countries subject to such sanctions; or
+
+(ii) to anyone on the U.S. Treasury Department's list of Specially Designated Nationals and Blocked Persons or the U.S. Commerce Department's Table of Denial Orders. By downloading or using the Software, Licensee agrees to the foregoing and represents and warrants that it complies with these conditions.
+
+9. USC has no obligation to support or maintain the Software and grants Licensee this right to use the Software "AS IS". LICENSEE ASSUMES TOTAL RESPONSIBILITY AND RISK FOR LICENSEE'S USE OF THE SOFTWARE. USC DOES NOT MAKE, AND EXPRESSLY DISCLAIMS, ANY EXPRESS OR IMPLIED WARRANTIES, REPRESENTATIONS OR ENDORSEMENTS OF ANY KIND WHATSOEVER, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, AND THE WARRANTIES OF TITLE OR NON-INFRINGEMENT. IN NO EVENT SHALL USC BE LIABLE FOR
+
+(a) ANY INCIDENTAL, CONSEQUENTIAL, OR INDIRECT DAMAGES (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS INTERRUPTION, LOSS OF PROGRAMS OR INFORMATION, AND THE LIKE) ARISING OUT OF THE USE OF OR INABILITY TO USE THE SOFTWARE, EVEN IF USC OR ANY OF ITS AUTHORIZED REPRESENTATIVES HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES,
+
+(b) ANY CLAIM ATTRIBUTABLE TO ERRORS, OMISSIONS, OR OTHER INACCURACIES IN THE SOFTWARE, OR
+
+(c) ANY CLAIM BY ANY THIRD PARTY.
+
+10. This Agreement shall be governed by and construed in accordance with the laws of the State of California, USA, applicable to agreements made and to be performed wholly therein without regard to its conflicts of law rules. Any cause of action or claim Licensee may have with respect to the Software must be brought within one (1) year after the claim or cause of action arises or such claim or cause of action is barred. USC's failure to insist upon or enforce strict performance of any provision of this Agreement is not a waiver of any provision or right.
+
+11. If a dispute arises out of, or relates to, this Agreement or the subject matter of this Agreement, either party may submit the dispute to a sole mediator selected by the parties or, at any time prior to selection of a sole mediator, to mediation by the American Arbitration Association ("AAA"). If not thus resolved, it shall be referred to a sole arbitrator selected by the parties or to the AAA for arbitration. The arbitration shall be governed by the United States Arbitration Act, shall be conducted in the County of Los Angeles, California, USA, and judgment on the award may be entered by any court having jurisdiction. The arbitrator shall not limit, expand or modify the terms of the Agreement nor award damages in excess of compensatory damages, and each party waives any claim to excess damages. A request by a party to a court for interim protection shall not affect either party's obligation hereunder to mediate and arbitrate. Each party shall bear its own expenses and an equal share of all cost and fees of the mediation and/or arbitration. Any arbitrator selected shall be competent in the legal and technical aspects of the subject matter of this Agreement. The content and result of mediation and/or arbitration shall be held in confidence by all participants.
+
+12.  Limitation of Liability:  To the maximum extent permitted by law, in no event will either party be responsible for any incidental damages, consequential damages, exemplary damages of any kind, lost goodwill, lost profits, lost business and/or any indirect economic damages whatsoever regardless of whether such damages arise from claims based upon contract, negligence, tort (including strict liability or other legal theory), a breach of any warranty or term of this Agreement, and regardless of whether a party was advised or had reason to know of the possibility of incurring such damages in advance.
+
+ 
+
+I certify that I am not a national or a resident of Cuba, Iran, Iraq, Libya, North Korea, Sudan, Syria, Serbia, Taliban-controlled portions of Afghanistan or any other country subject to U.S. trade sanctions, nor, to the best of my knowledge, have I been designated a Specially Designated National, Blocked Person, or otherwise been denied export-related privileges by the United States Government.
