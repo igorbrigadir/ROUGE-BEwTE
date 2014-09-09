@@ -1,0 +1,1 @@
+foal is my personal modified version of the colt library that includes some support for generics. See the 'colt-license' file for license info. Some classes have been renamed for simplicity (e.g. OpenIntIntHashMap --> IntIntHashMap). Also, classes have been repackaged to avoid collisions with colt. 

@@ -1,0 +1,28 @@
+Public release version history of BEwT-E: Basic Elements with Transformations for Evaluation
+Creators(s): Stephen Tratz, Eduard Hovy
+Contact Point: tratz _at_ usc.edu
+
+v0.1:
+Ready for initial public release
+
+v0.2:
+Fixed an issue related to BE weighting and jackknifing. Scores produced using 'root' or 'total' BE weighting have changed.
+
+v0.3:
+Added support for the Bikel parser. (Charniak parser seems to give better results however.)
+Fixed a couple errors in build.xml and documentation.
+
+v0.4:
+ I forget all the changes made. Most of them are small. Results should be slightly better with this version. This version should be more or less equivalent to the version used for TAC09. WordNet is now included with the download for easier setup. Old BE and ROUGE code is now included too.
+ 
+v0.4.1:
+ Fixed a serious but rarely encountered bug (only rears its head with datasets substantially larger than those used in DUC/TAC) in the pronoun transform that could lead to the program reporting the 'GC overhead limit exceeded'
+ BEwT-E classes now compiled with Java 1.5 as the target.
+ Now handles a couple of additional unusual cases that cause the Charniak parser to break. 
+ No longer have to move the Charniak 'parseIt' binary after compilation. 
+ Path to Charniak in the build.xml can now be an absolute path instead of relative.
+ Changed the TallyFunction interface 
+ A handful of other smallish fixes, rewrites, comments, etc.
+ 
+v0.5.1:
+ Switched away from using constituent parsers + Tregex rules to using a new, faster dependency parser

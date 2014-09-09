@@ -1,0 +1,58 @@
+Adapting BEwT-E: Basic Elements with Transformations for Evaluation
+Creators(s): Stephen Tratz, Eduard Hovy
+Contact Point: tratz _at_ usc.edu
+
+The BEwT-E package was created using the Java API and has a fairly modular design. It was designed to allow for some tuning. The Java source is included with the download.
+The API is subject to change.
+
+Following is a list of several customizable aspects of BEwT-E along with short descriptions of how to customize them.
+
+1. Custom summary file format:
+To read in a customary file format, you may either convert the summaries to plain text and then feed them into BEwT-E as normal or you may implement the tratz.runpipe.TextDocumentReader interface.
+The DOCUMENT_READER_CLASS parameter in the BEWT-E_INSTALLATION_DIRECTORY/build/build.xml determines which TextDocumentReader class is used to read in the text documents.
+
+2. File/topic/system name support
+The bewte.NameExtractor interface defines two methods for determining the topic and system names based upon a given summary filename.  To change how topic and system names are extracted
+from filenames, you should create an implementation of the bewte.NameExtractor class.
+The NAME_EXTRACTOR parameter in the BEWT-E_INSTALLATION_DIRECTORY/build/build.xml determines the name of the class used for extracting topic and system names.
+	
+3. Transformations list:
+	The transformations list is located in BEWT-E_INSTALLATION_DIRECTORY/conf/transformations/EN_transformsList.txt
+	The BEWT-E_INSTALLATION_DIRECTORY/build/build.xml file contains a parameter ENGLISH_TRANSFORM_LIST which points to the transformations list.
+	The transformation file is of the form
+		@startDefs
+		TRANSFORMATION_ABBR TAB TRANFORMATION_CLASS (TAB TRANSFORMATION_CONFIGURATION_ARGUMENTS)*
+		.
+		.
+		.
+		@startPipe
+		TRANSFORMATION_ABBR (TAB TRANSFORMATION_ABBR)*
+		.
+		.
+		.
+		
+	TRANSFORMATION_ABBR: A short string to be used to identify which transformations were applied to a BE in the transformed BE files
+	TRANSFORMATION_CLASS: A transformation Java class.  Should implement bewte.transforms.BETransform.
+	TRANSFORMATION_CONFIGURATION_ARGUMENTS: Configuration parameters passed into the init() method of the BETransform before it is applied. Of the form PARAM_STRING=VALUE_STRING
+	
+	
+5. Transformation weights:
+	The transformations weights list is located in BEWT-E_INSTALLATION_DIRECTORY/conf/transformations/EN_transformsCoeffs.txt
+	The BEWT-E_INSTALLATION_DIRECTORY/build/build.xml file contains a parameter ENGLISH_TRANSFORM_COEFFS which points to the transformations weights list.
+	The transformation weights list file is of the form
+		@startDefs
+		TRANSFORMATION_ABBR TAB TRANSFORMATION_WEIGHT_NAME
+		@startCoeffs
+		TRANSFORMATION_WEIGHT_NAME TAB TRANSFORMATION_WEIGHT
+		
+	TRANSFORMATION_ABBR: The same as TRANSFORMATION_ABBR from the Transformations list.
+	TRANSFORMATION_WEIGHT_NAME: A name for the weight. Multiple TRANSFORMATION_ABBRs may be mapped to the same weight name.
+	TRANSFORMATION_WEIGHT: A numeric value indicating the weight of the transformation.
+
+6. BE weighting:
+	For now, the only included options for BE weighting are based upon the frequency of the BE in the reference documents.  To alter this calculation, one must use a Java class that implements
+	bewte.scoring.TallyFunction.  See the bewte/scoring/TallyFunction.java source file for examples.
+
+
+
+
