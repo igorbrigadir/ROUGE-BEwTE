@@ -1,6 +1,7 @@
 package bewte.transforms;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -41,7 +42,7 @@ public class DeLemmaTransform extends FirstOrLastTransformer {
 	}
 	
 	private void readExceptionsList(Map<String, Set<String>> exceptionsMap, String filename) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(filename));
+		BufferedReader reader = new BufferedReader(new FileReader(DeLemmaTransform.class.getResource(filename).getFile()));
 		String line = null;
 		while((line = reader.readLine()) != null) {
 			line = line.trim();

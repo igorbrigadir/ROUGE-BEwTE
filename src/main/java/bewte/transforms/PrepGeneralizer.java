@@ -24,7 +24,8 @@ public class PrepGeneralizer extends AbstractBETransform {
 	
 	@Override
 	public void initialize(Map<String, String> params) throws Exception {
-		File dir = new File(params.get(PARAM_PREPOSITION_PROJECT_TAXONOMY_DIR));
+		File dir = new File(PrepGeneralizer.class.getResource(params.get(PARAM_PREPOSITION_PROJECT_TAXONOMY_DIR)).getFile());
+		System.out.println(PARAM_PREPOSITION_PROJECT_TAXONOMY_DIR + "=" + dir.toString());
 		if(dir != null) {
 			File[] files = dir.listFiles();
 			for(File file : files) {

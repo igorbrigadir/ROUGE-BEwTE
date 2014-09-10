@@ -31,6 +31,7 @@ public class AcronymTransform extends FirstOrLastTransformer {
 	@Override
 	public void initialize(Map<String, String> params) throws Exception {
 		super.initialize(params);
+		System.out.println(PARAM_KNOWN_ABBREVIATIONS+"="+params.get(PARAM_KNOWN_ABBREVIATIONS));
 		BufferedReader reader = new BufferedReader(new InputStreamReader(AcronymTransform.class.getResourceAsStream(params.get(PARAM_KNOWN_ABBREVIATIONS))));
 		String line = null;
 		while((line = reader.readLine()) != null) {

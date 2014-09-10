@@ -3,13 +3,13 @@
 
 @startDefs
 
-pgen	bewte.transforms.PrepGeneralizer	LEFT_OR_RIGHT=left	PREPOSITION_TAXONOMY_DIR=data/ThePrepositionProject/taxonomy
+pgen	bewte.transforms.PrepGeneralizer	LEFT_OR_RIGHT=left	PREPOSITION_TAXONOMY_DIR=/data/ThePrepositionProject/taxonomy
 
-acrl	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=left	ABBREVIATIONS_FILE=/abbreviations/knownAbbreviations.txt
-acrr	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=right	ABBREVIATIONS_FILE=/abbreviations/knownAbbreviations.txt
+acrl	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=left	ABBREVIATIONS_FILE=/data/abbreviations/knownAbbreviations.txt
+acrr	bewte.transforms.AcronymTransform	LEFT_OR_RIGHT=right	ABBREVIATIONS_FILE=/data/abbreviations/knownAbbreviations.txt
 
-dlml	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=left	VERB_EXCEPTIONS=data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=data/wordnet3_0/adj.exc
-dlmr	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=right	VERB_EXCEPTIONS=data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=data/wordnet3_0/adj.exc
+dlml	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=left	VERB_EXCEPTIONS=/data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=/data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=/data/wordnet3_0/adj.exc
+dlmr	bewte.transforms.DeLemmaTransform	LEFT_OR_RIGHT=right	VERB_EXCEPTIONS=/data/wordnet3_0/verb.exc	NOUN_EXCEPTIONS=/data/wordnet3_0/noun.exc	ADJ_EXCEPTIONS=/data/wordnet3_0/adj.exc
 
 dnom	bewte.transforms.DenominalizationTransform
 
