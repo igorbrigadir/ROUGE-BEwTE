@@ -19,7 +19,7 @@ public class BEwT_Evaluation {
 	static final String STEP3_OUTPUT_DIR = INTERMEDIATE_FILES_DIR+"/BEXs";
 		
 	
-	static final String REFERENCE_NAME_PATTERN = "[A-Z_\\-]+";
+	static final String REFERENCE_NAME_PATTERN = "reference.*";
 
 	static final String ENGLISH_RULE_LIST = PATH+"conf/rules/EN_ruleList.txt";
 	static final String ENGLISH_TRANSFORM_LIST = PATH+"conf/transformations/EN_transformsList.txt";
