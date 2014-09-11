@@ -179,6 +179,7 @@ public class BEwT_E {
 		int iteration = 1;
 		do {
 			System.err.println("Iteration: " + iteration);
+			
 			loopAgain = false;
 			long iterationStart = System.nanoTime();
 			
@@ -231,27 +232,33 @@ public class BEwT_E {
 		// Process each topic separately
 		for (int t = 0; t < numTopics; t++) {		
 			String topic = topics.get(t);
-			//System.err.println("Processing topic: " + topic);
+			
 			List<File> referenceFiles = topicToReferenceFiles.get(topic);
 			List<File> peerFiles = topicToFiles.get(topic);
+			
+			System.err.println("Processing topic: " + topic + " " + peerFiles.size() + " Peer Files." + referenceFiles.size() + " References");
 			
 			Map<String, Double> systemToScoreForTopic = new HashMap<String, Double>();
 			topicToSystemToScore.put(topic, systemToScoreForTopic);		
 			if(referenceFiles.size() == 0) {
-				System.err.println("WARNING: No models foundfor topic: " + topic);
+				System.err.println("WARNING: No models found for topic: " + topic);
 			}
 			else {
 				// Score each summary
 				for(File peerFile : peerFiles) {
+					System.err.println("Peer: " + peerFile.toString() );
 					String system =  fileToSystem.get(peerFile);
 				
 					double score = 0.0;
 				
 					// NOTE: Consider create objects that perform the calc score
 					if(referenceFiles.size() == 1 || tallyFunction instanceof TallyFunction.BinaryTallyFunction) {
+						System.err.println("Fast score calc... " );
 						score = calculateScoreFast(peerFile, referenceFiles, fileToBEs,	fileToBEXs, tallyFunction, ruleWeights, transformWeights, bitIndexToWeightIndex);
+					
 					}
 					else {
+						System.err.println("Score calc... " );
 						score = calculateScore(peerFile, referenceFiles, fileToBEs,	fileToBEXs,	tallyFunction, ruleWeights, transformWeights, bitIndexToWeightIndex);
 					}
 
@@ -261,6 +268,7 @@ public class BEwT_E {
 					systemToUnnormalizedOverallScore.put(system, (prevScore == null ? 0d : prevScore) + score);
 					Integer oldCount = systemToScoreCount.get(system);
 					systemToScoreCount.put(system, (oldCount == null ? 0 : oldCount) + 1);
+					System.err.println("...done" );
 				}
 			}
 		}
@@ -282,6 +290,8 @@ public class BEwT_E {
 		boolean isModelSummary = referenceFiles.contains(peerFile);				
 		double score = 0.0;
 		if(isModelSummary) {
+			
+						
 			final int numReferences = referenceFiles.size();
 			for(int i = 0; i < numReferences; i++) {
 				File modelFile = referenceFiles.get(i);
@@ -290,15 +300,17 @@ public class BEwT_E {
 				modelFiles.remove(peerFile);
 				IntIntHashMap beToModelFrequency = createBEFrequencyMap(modelFiles, fileToBEs);
 			
-				//double precision = 0.0;
+				double precision = 0.0;
 				double recall = 0.0;
 				if(!modelFile.equals(peerFile)) {
 					BEMatcher wbg = createBEMatcher(peerFile, modelFile, fileToBEs, fileToBEXs, beToModelFrequency, beRuleWeights);
 					Object[] precisionAndRecall = wbg.solve(bitIndexToWeightIndex, transformWeights, tallyFunction);
-					//precision = (Double)precisionAndRecall[0];
+					precision = (Double)precisionAndRecall[0];
 					recall = (Double)precisionAndRecall[1];
 				}
 				score = Math.max(recall, score);
+				
+				System.err.println("Reference Summary P=" + precision + " R=" + recall );
 			}
 		}
 		else {
@@ -313,15 +325,16 @@ public class BEwT_E {
 				for(int j = 0; j < numReferences; j++) {
 					if(i != j) {
 						File modelFile = referenceFiles.get(j);
-						//double precision = 0.0;
+						double precision = 0.0;
 						double recall = 0.0;
 						BEMatcher wbg = createBEMatcher(peerFile, modelFile, fileToBEs, fileToBEXs, beToModelFrequency, beRuleWeights);
 						Object[] precisionAndRecall = wbg.solve(bitIndexToWeightIndex, transformWeights, tallyFunction);
-						//precision = (Double)precisionAndRecall[0];
+						precision = (Double)precisionAndRecall[0];
 						recall = (Double)precisionAndRecall[1];
 						if(recall > max) {
 							max = recall;
 						}
+						System.err.println("System Summary P=" + precision + " R=" + recall );
 					}
 				}
 				totalRecall += max;
@@ -353,7 +366,7 @@ public class BEwT_E {
 					IntIntHashMap beToModelFrequency = createBEFrequencyMap(
 							modelFiles, fileToBEs);
 
-					// double precision = 0.0;
+					double precision = 0.0;
 					double recall = 0.0;
 					if (!modelFile.equals(peerFile)) {
 						BEMatcher wbg = createBEMatcher(peerFile, modelFile,
@@ -362,13 +375,14 @@ public class BEwT_E {
 						Object[] precisionAndRecall = wbg.solve(
 								bitIndexToWeightIndex, transformWeights,
 								tallyFunction);
-						// precision = (Double)precisionAndRecall[0];
+						precision = (Double)precisionAndRecall[0];
 						recall = (Double) precisionAndRecall[1];
 					} else {
-						// precision = 0;
+						precision = 0;
 						recall = 0;
 					}
 					score = Math.max(recall, score);
+					System.err.println("Reference Summary P=" + precision + " R=" + recall );
 				}
 			}
 		} 
@@ -379,7 +393,7 @@ public class BEwT_E {
 			final int numReferences = referenceFiles.size();
 			for (int i = 0; i < numReferences; i++) {		
 				File modelFile = referenceFiles.get(i);
-				// double precision = 0.0;
+				double precision = 0.0;
 				double recall = 0.0;
 				BEMatcher wbg = createBEMatcher(peerFile, modelFile,
 								fileToBEs, fileToBEXs, beToModelFrequency,
@@ -387,7 +401,7 @@ public class BEwT_E {
 				Object[] precisionAndRecall = wbg.solve(
 								bitIndexToWeightIndex, transformWeights,
 								tallyFunction);
-				//precision = (Double)precisionAndRecall[0];
+				precision = (Double)precisionAndRecall[0];
 				recall = (Double) precisionAndRecall[1];
 				if(i > 0) {
 					if(recall > scores.get(scores.size()-1)) {
@@ -400,6 +414,7 @@ public class BEwT_E {
 				else {
 					scores.add(recall);
 				}
+				System.err.println("System Summary " + i + " P=" + precision + " R=" + recall );
 			}
 			score = scores.size() <= 1 ? scores.get(0) : ((numReferences-1)*scores.get(scores.size()-1) + scores.get(scores.size()-2)) / numReferences; 
 		}

@@ -43,19 +43,19 @@ public class BEwT_Evaluation {
 		 * Step 1. Parse input documents
 		 */
 		System.out.println("Step 1. Parse input documents:");
-		step1();		
+		//step1();		
 		System.out.println("Done...");
 		/*
 		 * Step 2. Extract BEs
 		 */
 		System.out.println("Step 2. Extract BEs");
-		step2();
+		//step2();
 		System.out.println("Done...");
 		/*
 		 * Step 3. Perform Transformations
 		 */
 		System.out.println("Step 3. Perform Transformations");
-		step3();
+		//step3();
 		System.out.println("Done...");
 		/*
 		 * Step 4. Perform Evaluation
@@ -132,7 +132,7 @@ public class BEwT_Evaluation {
 				"-1",
 				".*"+REFERENCE_NAME_PATTERN,
 				ENGLISH_TRANSFORM_LIST,
-				"bewte.names.DUCStyleNameExtractor"				
+				"bewte.names.T2VStyleNameExtractor"				
 		};
 		BEXpander.main(args3);	
 	}
@@ -149,7 +149,7 @@ public class BEwT_Evaluation {
 				ENGLISH_TRANSFORM_COEFFS,
 				REFERENCE_NAME_PATTERN,
 				END_ANALYSIS_CONF_FILE,
-				"bewte.names.DUCStyleNameExtractor",
+				"bewte.names.T2VStyleNameExtractor",
 				".*"				
 		};
 		BEwT_E.main(args4);	
