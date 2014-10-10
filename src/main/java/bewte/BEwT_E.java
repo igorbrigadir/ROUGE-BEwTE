@@ -17,7 +17,6 @@ import java.util.Map;
 import foal.list.DoubleArrayList;
 import foal.map.IntIntHashMap;
 import foal.map.IntObjectHashMap;
-
 import bewte.BE.BEPart;
 import bewte.endanalysis.AbstractEndAnalyzer;
 import bewte.endanalysis.EndAnalyzer;
@@ -25,6 +24,7 @@ import bewte.io.BESetReader;
 import bewte.io.TransformInfoReader;
 import bewte.names.NameExtractor;
 import bewte.scoring.TallyFunction;
+import bewte.transforms.BETransform;
 import bewte.util.BEUtils;
 
 /**
@@ -126,7 +126,7 @@ public class BEwT_E {
 		Collections.sort(topics);
 		
 		// Read transformation list and transformation weights
-		List transforms = new ArrayList();
+		List<BETransform> transforms = new ArrayList<BETransform>();
 		TransformInfoReader.readTransformPipeline(params.transformList, transforms, false);
 		IntObjectHashMap<String> bitToTransformName = new IntObjectHashMap<String>();
 		Map<String, Integer> transformNameToBitIndex = new HashMap<String, Integer>();
@@ -155,10 +155,10 @@ public class BEwT_E {
 		
 		Map<String, BEPart> bePartCanonicalMap = new HashMap<String, BEPart>();
 		for(String topic : topics) {
-			System.err.println("Loading topic data for topic: " + topic + " ...");
+			System.out.println("Loading topic data for topic: " + topic + " ...");
 			List<File> filesForTopic = BEUtils.getFilesForTopic(topic, allFiles, params.topicNameGenerator);
 			List<File> referenceFiles = BEUtils.getFiles(filesForTopic, ".*" + params.refSystemsPattern);
-			System.err.println("... finished. Topic has " + filesForTopic.size() + " files including " + referenceFiles.size() + " references");
+			System.out.println("... finished. Topic has " + filesForTopic.size() + " files including " + referenceFiles.size() + " references");
 			topicToFiles.put(topic, filesForTopic);
 			topicToGoldenFiles.put(topic, referenceFiles);
 			
@@ -178,7 +178,7 @@ public class BEwT_E {
 		boolean loopAgain = false;
 		int iteration = 1;
 		do {
-			System.err.println("Iteration: " + iteration);
+			System.out.println("Iteration: " + iteration);
 			
 			loopAgain = false;
 			long iterationStart = System.nanoTime();
@@ -189,16 +189,16 @@ public class BEwT_E {
 			mainEvaluation(systemToScore, topicToSystemToScore, topics, allFiles, topicToFiles, topicToGoldenFiles, fileToSystem, fileToBEs, ruleWeights, params.tallyFunction, params.refSystemsPattern, bitIndexToWeightIndex, transformWeights, fileToBEXs);
 			
 			// Write out system level scores
-			if(iteration == 1) System.err.println("Writing system level scores to: " + params.systemLevelOutputFile.getAbsolutePath());
+			if(iteration == 1) System.out.println("Writing system level scores to: " + params.systemLevelOutputFile.getAbsolutePath());
 			writeSystemLevelScores(params.systemLevelOutputFile, systemToScore, topicToSystemToScore);
 			
 			// Write out summary level scores
-			if(iteration == 1) System.err.println("Writing summary level scores to: " + params.summaryLevelOutputFile.getAbsolutePath());
+			if(iteration == 1) System.out.println("Writing summary level scores to: " + params.summaryLevelOutputFile.getAbsolutePath());
 			writeSummaryLevelScores(params.summaryLevelOutputFile, systemToScore, topicToSystemToScore, topics);
 			
 			// Do something more (optional) and decide whether to loop again
 			loopAgain = endAnalyzerObject.doSomething(topics, systemToScore, topicToSystemToScore, ruleWeights, transformWeights, transformNameToBitIndex, ruleToWeightIndex, bitIndexToWeightIndex);
-			if(iteration == 1) System.err.println("Iteration: " + iteration + " seconds: " + ((System.nanoTime() - iterationStart)/1000000.0));
+			if(iteration == 1) System.out.println("Iteration: " + iteration + " seconds: " + ((System.nanoTime() - iterationStart)/1000000.0));
 			
 			iteration++;
 		}
@@ -236,7 +236,7 @@ public class BEwT_E {
 			List<File> referenceFiles = topicToReferenceFiles.get(topic);
 			List<File> peerFiles = topicToFiles.get(topic);
 			
-			System.err.println("Processing topic: " + topic + " " + peerFiles.size() + " Peer Files." + referenceFiles.size() + " References");
+			System.out.println("Processing topic: " + topic + " " + peerFiles.size() + " Peer Files." + referenceFiles.size() + " References");
 			
 			Map<String, Double> systemToScoreForTopic = new HashMap<String, Double>();
 			topicToSystemToScore.put(topic, systemToScoreForTopic);		
@@ -246,19 +246,19 @@ public class BEwT_E {
 			else {
 				// Score each summary
 				for(File peerFile : peerFiles) {
-					System.err.println("Peer: " + peerFile.toString() );
+					System.out.println("Peer: " + peerFile.toString() );
 					String system =  fileToSystem.get(peerFile);
 				
 					double score = 0.0;
 				
 					// NOTE: Consider create objects that perform the calc score
 					if(referenceFiles.size() == 1 || tallyFunction instanceof TallyFunction.BinaryTallyFunction) {
-						System.err.println("Fast score calc... " );
+						System.out.println("Fast score calc... " );
 						score = calculateScoreFast(peerFile, referenceFiles, fileToBEs,	fileToBEXs, tallyFunction, ruleWeights, transformWeights, bitIndexToWeightIndex);
 					
 					}
 					else {
-						System.err.println("Score calc... " );
+						System.out.println("Score calc... " );
 						score = calculateScore(peerFile, referenceFiles, fileToBEs,	fileToBEXs,	tallyFunction, ruleWeights, transformWeights, bitIndexToWeightIndex);
 					}
 
@@ -268,7 +268,7 @@ public class BEwT_E {
 					systemToUnnormalizedOverallScore.put(system, (prevScore == null ? 0d : prevScore) + score);
 					Integer oldCount = systemToScoreCount.get(system);
 					systemToScoreCount.put(system, (oldCount == null ? 0 : oldCount) + 1);
-					System.err.println("...done" );
+					System.out.println("...done" );
 				}
 			}
 		}
@@ -310,7 +310,7 @@ public class BEwT_E {
 				}
 				score = Math.max(recall, score);
 				
-				System.err.println("Reference Summary P=" + precision + " R=" + recall );
+				System.out.println("Reference Summary P=" + precision + " R=" + recall );
 			}
 		}
 		else {
@@ -334,7 +334,7 @@ public class BEwT_E {
 						if(recall > max) {
 							max = recall;
 						}
-						System.err.println("System Summary P=" + precision + " R=" + recall );
+						System.out.println("System Summary P=" + precision + " R=" + recall );
 					}
 				}
 				totalRecall += max;
@@ -382,7 +382,7 @@ public class BEwT_E {
 						recall = 0;
 					}
 					score = Math.max(recall, score);
-					System.err.println("Reference Summary P=" + precision + " R=" + recall );
+					System.out.println("Reference Summary P=" + precision + " R=" + recall );
 				}
 			}
 		} 
@@ -414,7 +414,7 @@ public class BEwT_E {
 				else {
 					scores.add(recall);
 				}
-				System.err.println("System Summary " + i + " P=" + precision + " R=" + recall );
+				System.out.println("System Summary " + i + " P=" + precision + " R=" + recall );
 			}
 			score = scores.size() <= 1 ? scores.get(0) : ((numReferences-1)*scores.get(scores.size()-1) + scores.get(scores.size()-2)) / numReferences; 
 		}
