@@ -126,7 +126,7 @@ public class BEwT_E {
 		Collections.sort(topics);
 		
 		// Read transformation list and transformation weights
-		List<BETransform> transforms = new ArrayList<BETransform>();
+		List transforms = new ArrayList();
 		TransformInfoReader.readTransformPipeline(params.transformList, transforms, false);
 		IntObjectHashMap<String> bitToTransformName = new IntObjectHashMap<String>();
 		Map<String, Integer> transformNameToBitIndex = new HashMap<String, Integer>();
