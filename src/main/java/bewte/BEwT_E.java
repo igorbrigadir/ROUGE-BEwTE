@@ -24,6 +24,7 @@ import bewte.io.BESetReader;
 import bewte.io.TransformInfoReader;
 import bewte.names.NameExtractor;
 import bewte.scoring.TallyFunction;
+import bewte.transforms.BETransform;
 import bewte.util.BEUtils;
 
 /**
