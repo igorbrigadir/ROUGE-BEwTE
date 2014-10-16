@@ -31,6 +31,7 @@ public class CDGroupAnnotator extends AnnotatorImpl {
 					doc.addAnnotation(newAnnot);
 				}
 			}
+			
 		}
 	}
 

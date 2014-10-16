@@ -25,7 +25,7 @@ import tratz.runpipe.TextDocument;
  * Implementation of annotation class
  */
 abstract public class AnnotationImpl implements Annotation, Serializable {
-	public final static long serialVersionUID = 1l;
+	public final static long serialVersionUID = 1L;
 	
 	protected int mStart = -1;
 	protected int mEnd = -1;

@@ -3,8 +3,8 @@ package bewte;
 import tratz.runpipe.util.RunPipe;
 
 public class BEwT_Evaluation {
-	
-	static final String PATH = "/home/igor/BEwT/";
+		
+	static final String PATH = "/home/BEwT/";
 
 	static final String SUMMARIES_DIR = PATH+"eval";
 	
@@ -17,17 +17,17 @@ public class BEwT_Evaluation {
 	static final String STEP1_OUTPUT_DIR = INTERMEDIATE_FILES_DIR+"/parsed";
 	static final String STEP2_OUTPUT_DIR = INTERMEDIATE_FILES_DIR+"/BEs";
 	static final String STEP3_OUTPUT_DIR = INTERMEDIATE_FILES_DIR+"/BEXs";
-		
 	
 	static final String REFERENCE_NAME_PATTERN = "reference.*";
 
+	
 	static final String ENGLISH_RULE_LIST = PATH+"conf/rules/EN_ruleList.txt";
 	static final String ENGLISH_TRANSFORM_LIST = PATH+"conf/transformations/EN_transformsList.txt";
 	static final String ENGLISH_TRANSFORM_COEFFS = PATH+"conf/transformations/EN_transformCoeffs.txt";
 	static final String END_ANALYSIS_CONF_FILE = PATH+"conf/endanalysis/doNothingEndAnalysisConfig.txt";
 	
-	static final String SYSTEM_LEVEL_OUTPUT_FILE = "systemLevelOutput.txt";
-	static final String SUMMARY_LEVEL_OUTPUT_FILE = "summaryLevelOutput.txt";
+	static final String SYSTEM_LEVEL_OUTPUT_FILE = PATH+"systemLevelOutput.txt";
+	static final String SUMMARY_LEVEL_OUTPUT_FILE = PATH+"summaryLevelOutput.txt";
 	
 	
 	/*
@@ -43,24 +43,24 @@ public class BEwT_Evaluation {
 		 * Step 1. Parse input documents
 		 */
 		System.out.println("Step 1. Parse input documents:");
-		//step1();		
-		System.out.println("Done...");
+		step1();		
+		System.out.println("Done.");
 		/*
 		 * Step 2. Extract BEs
 		 */
 		System.out.println("Step 2. Extract BEs");
-		//step2();
-		System.out.println("Done...");
+		step2();
+		System.out.println("Done.");
 		/*
 		 * Step 3. Perform Transformations
 		 */
 		System.out.println("Step 3. Perform Transformations");
-		//step3();
-		System.out.println("Done...");
+		step3();
+		System.out.println("Done.");
 		/*
 		 * Step 4. Perform Evaluation
 		 */
-		System.out.println(" Step 4. Perform Evaluation");
+		System.out.println("Step 4. Perform Evaluation");
 		step4();
 		
 		System.out.println("Finished.");

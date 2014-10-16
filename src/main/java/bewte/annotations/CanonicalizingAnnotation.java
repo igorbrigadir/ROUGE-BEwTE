@@ -6,6 +6,8 @@ import tratz.runpipe.impl.AnnotationImpl;
 
 abstract public class CanonicalizingAnnotation extends AnnotationImpl {
 	
+	private static final long serialVersionUID = 1L;
+	
 	public CanonicalizingAnnotation(TextDocument doc, int start, int end) {
 		super(doc, start, end);
 	}
