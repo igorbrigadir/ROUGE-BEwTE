@@ -4,9 +4,9 @@ import tratz.runpipe.util.RunPipe;
 
 public class BEwT_Evaluation {
 		
-	static final String PATH = "/home/BEwT/";
+	static final String PATH = "/tmp/BEwT/";
 
-	static final String SUMMARIES_DIR = PATH+"eval";
+	static final String SUMMARIES_DIR = "/tmp/BEwT/summaries";
 	
 	static final String MODELS_DIR = PATH+"models";
 	static final String WORDNET_DIR = PATH+"data/wordnet3_0";
@@ -19,15 +19,14 @@ public class BEwT_Evaluation {
 	static final String STEP3_OUTPUT_DIR = INTERMEDIATE_FILES_DIR+"/BEXs";
 	
 	static final String REFERENCE_NAME_PATTERN = "reference.*";
-
 	
 	static final String ENGLISH_RULE_LIST = PATH+"conf/rules/EN_ruleList.txt";
 	static final String ENGLISH_TRANSFORM_LIST = PATH+"conf/transformations/EN_transformsList.txt";
 	static final String ENGLISH_TRANSFORM_COEFFS = PATH+"conf/transformations/EN_transformCoeffs.txt";
 	static final String END_ANALYSIS_CONF_FILE = PATH+"conf/endanalysis/doNothingEndAnalysisConfig.txt";
 	
-	static final String SYSTEM_LEVEL_OUTPUT_FILE = PATH+"systemLevelOutput.txt";
-	static final String SUMMARY_LEVEL_OUTPUT_FILE = PATH+"summaryLevelOutput.txt";
+	static final String SYSTEM_LEVEL_OUTPUT_FILE = "/tmp/BEwT/systemLevelOutput.txt";
+	static final String SUMMARY_LEVEL_OUTPUT_FILE = "/tmp/BEwT/summaryLevelOutput.txt";
 	
 	
 	/*
@@ -154,5 +153,5 @@ public class BEwT_Evaluation {
 		};
 		BEwT_E.main(args4);	
 	}
-	
+
 }
