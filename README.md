@@ -3,6 +3,9 @@ bewte
 
 This is a mavenized fork of the BEwT-E: Basic Elements with Transformations for Evaluation implementation available from http://www.isi.edu/publications/licensed-sw/BE/ See original page for details & Licence agreement.
 
+The original BEwT-E.zip is attatched to the [releases](https://github.com/igorbrigadir/ROUGE-BEwTE/releases) for reference, you shouldn't need it, but it's there.
+
+# README
 
 BE: Basic Elements for Automated Evaluation of Summaries
 ======
